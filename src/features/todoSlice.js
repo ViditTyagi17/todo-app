@@ -14,12 +14,13 @@ const todoSlice = createSlice({
 
       const newtodo = {
         id: Date.now(),
-        message: action.payload,
+        message: action.payload.message,
+        deadline:action.payload.deadline,
          completed: false,
       }
 
       state.todos.push(newtodo)
-      localStorage.setItem("todo",JSON.stringify(state.todos))
+      localStorage.setItem("todos",JSON.stringify(state.todos))
 
     }
 
@@ -43,6 +44,7 @@ const todoSlice = createSlice({
        if(todo){
         todo.completed=!todo.completed
        }
+       localStorage.setItem("todos", JSON.stringify(state.todos));
     }
 
   }

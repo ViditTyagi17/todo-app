@@ -14,8 +14,8 @@ function App() {
 
   return (
     
-  <div className="bg-white dark:bg-[#172842] min-h-screen py-8 transition-colors duration-300">
-    <div className="w-full max-w-2xl mx-auto shadow-md rounded-lg px-4 py-3 text-gray-900 dark:text-white transition-colors duration-300">
+  <div className="bg-gray-300 dark:bg-[#172842] min-h-screen py-8 transition-colors duration-300">
+    <div className="w-full max-w-3xl mx-auto shadow-md rounded-lg px-4 py-3 text-gray-900 dark:text-white transition-colors duration-300 bg-gray-100" >
       
       <div className="flex justify-between items-center mb-8 mt-2">
         <h1 className="text-2xl font-bold">Manage Your Todos</h1>
