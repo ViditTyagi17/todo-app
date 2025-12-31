@@ -10,8 +10,8 @@ function ThemeSwitcher() {
     <>
       
       <button
-        type="toggle"
-        className=' className="px-3 py-1 rounded-md bg-blue-500 text-white dark:bg-yellow-400 dark:text-black transition-colors duration-300'
+        type="button"
+        className='cursor-pointer px-3 py-1 rounded-md  dark:text-white  text-black transition-colors duration-300'
         onClick={() => dispatch(themeToggler())}
       >
         {theme === "dark" ? "Light ☀️" : "Dark 🌙"}

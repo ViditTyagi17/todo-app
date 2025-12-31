@@ -33,61 +33,96 @@ function TodoItem({ todo }) {
 
   return (
     <div
-      className={`flex items-center border border-black/10 rounded-lg px-3 py-1.5 gap-x-3 shadow-xl shadow-white/50 duration-300  text-black ${
-        todo.completed ? "bg-[#c6e9a7]" : "bg-[#ccbed7]"
-      }`}
+      className={`sm:flex  flex-col gap-3  border border-black/10 rounded-lg p-4   dark:text-white text-black
+        transition-colors duration-200 ease-in-out
+         ${
+           todo.completed
+             ? "bg-green-200 dark:bg-green-800"
+             : "bg-[#EFC3CA] dark:bg-neutral-700"
+         }`}
     >
-      <input
-        type="checkbox"
-        className="cursor-pointer"
-        checked={todo.completed}
-        onChange={toggleTodos}
-      />
-
-   
-      <input
-        type="text"
-        className={`border outline-none w-full bg-transparent rounded-lg ${
-          isTodoEditable ? "border-black/10 px-2" : "border-transparent"
-        } ${todo.completed ? "line-through" : ""}`}
+      <textarea
+        className={`w-full rounded-lg p-3 text-sm sm:text-base resize-none
+              border outline-none bg-transparent
+              
+              ${
+                isTodoEditable
+                  ? "border-black/10 focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
+                  : "border-transparent"
+              }
+              ${
+                todo.completed
+                  ? "line-through text-gray-500 dark:text-gray-400"
+                  : ""
+              }`}
         value={todoMsg}
         onChange={(e) => setTodoMsg(e.target.value)}
         readOnly={!isTodoEditable}
       />
       {/* Edit, Save Button */}
-      <button
-        className="inline-flex w-8 h-8 rounded-lg text-sm border border-black/10 justify-center items-center bg-gray-50 hover:bg-gray-100 shrink-0 disabled:opacity-50"
-        onClick={() => {
-          if (todo.completed) return;
-
-          if (isTodoEditable) {
-            editTodo();
-          } else setIsTodoEditable((prev) => !prev);
-        }}
-        disabled={todo.completed}
+      <div
+        className="flex  gap-3 justify-between items-center whitespace-nowrap
+"
       >
-        {isTodoEditable ? "📁" : "✏️"}
-      </button>
-      {/* Delete Todo Button */}
-      <button
-        className="inline-flex w-8 h-8 rounded-lg text-sm border border-black/10 justify-center items-center bg-gray-50 hover:bg-gray-100 shrink-0"
-        onClick={() => dispatch(deleteTodo(todo.id))}
-      >
-        ❌
-      </button>
-      <div className="flex flex-col gap-1 justify-center items-center whitespace-nowrap
-">
+        <div className="flex justify-evenly gap-2">
+          <input
+            type="checkbox"
+            className="cursor-pointer"
+            checked={todo.completed}
+            onChange={toggleTodos}
+          />
+          <button
+            className="cursor-pointer inline-flex w-8 h-8 rounded-lg text-sm border border-black/10 justify-center items-center bg-gray-50 hover:bg-gray-100 shrink-0 disabled:opacity-50"
+            onClick={() => {
+              if (todo.completed) return;
 
-      <p className={`text-sm ${isOverdue ? "text-red-600" : "text-gray-600"}`}>
-        📅 {todo.deadline ? todo.deadline : "No deadline"}
-      </p>
-      <p>
-        {daysLeft < 0
-          ? `Overdue by ${Math.abs(Math.ceil(daysLeft))} days`
-          : daysLeft === 0
-          ? "Due today"
-          : `${daysLeft} days left`}
-      </p>
+              if (isTodoEditable) {
+                editTodo();
+              } else setIsTodoEditable((prev) => !prev);
+            }}
+            disabled={todo.completed}
+          >
+            {isTodoEditable ? "📁" : "✏️"}
+          </button>
+          {/* Delete Todo Button */}
+          <button
+            className="cursor-pointer inline-flex w-8 h-8 rounded-lg text-sm border border-black/10 justify-center items-center bg-gray-50 hover:bg-gray-100 shrink-0"
+            onClick={() => dispatch(deleteTodo(todo.id))}
+          >
+            ❌
+          </button>
+        </div>
+        <div
+          className="flex flex-col gap-1 justify-center items-center whitespace-nowrap
+"
+        >
+          {todo.completed ? (
+            <>
+              <p className="text-sm dark:text-gray-400 text-gray-500 ">
+                ✅ Completed{" "}
+              </p>
+            </>
+          ) : (
+            <>
+              <p
+                className={`text-sm ${
+                  isOverdue
+                    ? "text-red-600 dark:text-red-400"
+                    : "  text-green-600 dark:text-green-400"
+                }`}
+              >
+                📅 {todo.deadline ? todo.deadline : "No deadline"}
+              </p>
+              <p>
+                {daysLeft < 0
+                  ? `Overdue by ${Math.abs(Math.ceil(daysLeft))} days`
+                  : daysLeft === 0
+                  ? "Due today"
+                  : `${daysLeft} days left`}
+              </p>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

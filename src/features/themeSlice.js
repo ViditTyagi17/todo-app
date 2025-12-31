@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const getinialTheme =()=>{
+const getInitialTheme =()=>{
   const savedTheme=localStorage.getItem("theme")
   if(savedTheme)return savedTheme;
 
@@ -12,7 +12,7 @@ const getinialTheme =()=>{
 
 const initialState={
   // mode: localStorage.getItem("theme")||"light"
-  mode:getinialTheme()
+  mode:getInitialTheme()
 }
 
 const themeSlice = createSlice({
