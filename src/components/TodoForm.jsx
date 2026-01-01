@@ -35,7 +35,7 @@ function TodoForm() {
       />
       <input
         type="date"
-        className="border border-black/10 rounded-lg px-3 py-2
+        className="flex-1 border border-black/10 rounded-lg px-3 py-2
               outline-none        
              bg-white dark:bg-neutral-700 
              text-black dark:text-white 
